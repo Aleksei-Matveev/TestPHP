@@ -1,23 +1,26 @@
 <?php
-    //error_reporting(0);
-    require_once ('config.php');
+    require_once('config.php');
     require_once('db.php');
 
     $error      = "";
     $status     = 1;
 
-    if((( isset( $_GET['limit'] )) && ( isset( $_GET['page'] ) )) ){
-        $limit      = $_GET['limit'];
-        $page       = $_GET['page'];
-    }else
-    {
-        $status = 0;
-        $error  ="Не указан LIMIT. LIMIT установлен в значение 100";
-        $limit      = 100;
-        $page       = 1;
+    if(isset( $_GET['limit'] )){
+        $limit      = $_GET['limit'] > 100 ? $_GET['limit'] : 100;
+
+        if($limit > 100){
+            $status = 0;
+            $error  = "Превышен допустимый LIMIT. LIMIT установлен в значение 100";
+        }
+
+        $page       = $_GET['page'] ?? 1;
     }
+    else{
+        $status = 0;
+        $error  = "Не указан LIMIT. LIMIT установлен в значение 100";
+        $limit  = 100;
 
-
+    }
 
     $conn       = DB::connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 
@@ -30,7 +33,8 @@
 
     if(!isset($body)) {
         $status = 0;
-        $error="Превышен допустимый LIMIT. LIMIT установлен в значение 100";
+        $error="Страницы с таким номером не существует";
+        $body[] = '';
     }
 
     $query        = "SELECT `COLUMN_NAME`FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='test'";

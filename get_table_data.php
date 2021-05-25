@@ -1,18 +1,21 @@
 <?php
-   // error_reporting(0);
+    //error_reporting(0);
     require_once ('config.php');
     require_once('db.php');
 
     $error      = "";
     $status     = 1;
 
-    if(!(( isset( $_GET['limit'] )) || ( isset( $_GET['page'] ) )) )
+    if((( isset( $_GET['limit'] )) && ( isset( $_GET['page'] ) )) ){
+        $limit      = $_GET['limit'];
+        $page       = $_GET['page'];
+    }else
     {
         $status = 0;
         $error  ="Не указан LIMIT. LIMIT установлен в значение 100";
+        $limit      = 100;
+        $page       = 1;
     }
-    $limit      = ( isset( $_GET['limit'] ) ) ? $_GET['limit'] : 100;
-    $page       = ( isset( $_GET['page'] ) ) ? $_GET['page'] : 1 ;
 
 
 
@@ -20,8 +23,6 @@
 
     $query      = "SELECT * FROM test LIMIT " . (($page - 1) * $limit) . " , $limit";
     $result     = $conn->query($query);
-
-
 
     while ($row = $result->fetch_row())
         $body[] = $row;

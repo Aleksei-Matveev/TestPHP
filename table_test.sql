@@ -1,0 +1,36 @@
+CREATE TABLE IF NOT EXISTS test.test (
+    id int(11) NOT NULL AUTO_INCREMENT,
+    `pipeline-ORG` varchar(100) NOT NULL,
+    `pipeline-AREA` varchar(100) NOT NULL,
+    `pipeline-LINE_NUMBER` varchar(100) NOT NULL,
+    `pipeline-PIPE_CLASS` varchar(100) NOT NULL,
+    `pipeline-MAIN_MATERIAL` varchar(100) NOT NULL,
+    `pipeline-PB_PIPELINE_CATEGORY` varchar(100) NOT NULL,
+    `pipeline-FLUID_CODE` varchar(100) NOT NULL,
+    `elements-MEMBER_1` varchar(100) NOT NULL,
+    `elements-MEMBER_2` varchar(100) NOT NULL,
+    `characteristics-D_INCHES_MEMBER_1` double NOT NULL,
+    `characteristics-MEMBER_1_DIAMETER_MM` int(11) NOT NULL,
+    `characteristics-THICKNESS_MEMBER_1_IDENTIFICATION_SCHEDULE` varchar(100) NOT NULL,
+    `characteristics-THICKNESS_MEMBER_1_MM` double NOT NULL,
+    `characteristics-D_INCHES_MEMBER_2` double NOT NULL,
+    `characteristics-MEMBER_2_DIAMETER_MM` int(11) NOT NULL,
+    `characteristics-THICKNESS_MEMBER_2_IDENTIFICATION_SCHEDULE` varchar(100) NOT NULL,
+    `characteristics-THICKNESS_MEMBER_2_MM` double NOT NULL,
+    `welding-WELDING_DATE` date NOT NULL,
+    `welding-WELDING_METHOD` varchar(100) NOT NULL,
+    `welding-TYPE_OF_WELDS` varchar(100) NOT NULL,
+    `welding-TYPE_OF_JOINT` varchar(100) NOT NULL,
+    `welding-NO_OF_THE_JOINT_AS_PER_AS_BUILT_SURVEY` varchar(100) NOT NULL,
+    `welding-WELDER_S_STAMP_ROOT_PASS` varchar(100) NOT NULL,
+    KSS json DEFAULT NULL,
+    PRIMARY KEY (id),
+    INDEX `pipeline-AREA` (`pipeline-AREA`),
+    INDEX `pipeline-LINE_NUMBER` (`pipeline-LINE_NUMBER`),
+    INDEX `pipeline-ORG` (`pipeline-ORG`),
+    INDEX `welding-WELDER_S_STAMP_ROOT_PASS` (`welding-WELDER_S_STAMP_ROOT_PASS`),
+    INDEX `welding-WELDING_DATE` (`welding-WELDING_DATE`)
+)
+ENGINE = INNODB
+CHARACTER SET utf8
+COLLATE utf8_general_ci;

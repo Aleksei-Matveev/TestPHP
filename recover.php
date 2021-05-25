@@ -25,20 +25,6 @@ $query = file_get_contents($name);
 else echo "файл не загружен<br>";
 
 //$array = split_sql($query);
-$array = explode("VALUES", $query);
-
-    echo sprintf("arr 1 =%s<br>", count($array));
-
-$array = explode(");", $array[1]);
-
-    echo sprintf("arr 2 =%s<br>", count($array));
-
-    echo "<PRE>";
-    var_dump($array[0]);
-    echo "</PRE>";
-
-$array = explode(")", $array[0]);
-    echo sprintf("arr 3 =%s<br>", count($array));
 
 
 //for ($i=0; $i<count($array); $i++){
@@ -57,19 +43,19 @@ $array = explode(")", $array[0]);
 //    echo $item . "<br>";
 
 
-//$conn = DB::connect(DB_HOST, DB_USER, DB_PASSWORD);
-//
-//if ($conn->connect_error) {
-//die("Ошибка подключения: " . $conn->connect_error . "<br>");
-//}
-//
-//if ($conn->multi_query($query) === TRUE) {
-//echo "Успешно выполнен запрос<br>";
-//} else {
-//echo "<br>Ошибка создания базы данных: " . $conn->error . "<br>";
-//}
-//
-//$conn->close();
+$conn = DB::connect(DB_HOST, DB_USER, DB_PASSWORD);
+
+if ($conn->connect_error) {
+die("Ошибка подключения: " . $conn->connect_error . "<br>");
+}
+
+if ($conn->multi_query($query) === TRUE) {
+echo "Успешно выполнен запрос<br>";
+} else {
+echo "<br>Ошибка создания базы данных: " . $conn->error . "<br>";
+}
+
+$conn->close();
 }
 ?>
 

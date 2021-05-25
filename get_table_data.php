@@ -12,8 +12,6 @@
             $status = 0;
             $error  = "Превышен допустимый LIMIT. LIMIT установлен в значение 100";
         }
-
-        $page       = $_GET['page'] ?? 1;
     }
     else{
         $status = 0;
@@ -21,6 +19,8 @@
         $limit  = 100;
 
     }
+
+    $page       = $_GET['page'] ?? 1;
 
     $conn       = DB::connect(DB_HOST, DB_USER, DB_PASSWORD, DB_DATABASE);
 
@@ -45,6 +45,7 @@
 
     $data['head'] = $name;
     $data['body'] = $body;
+
     header('Content-Type: application/json;charset=utf-8');
     header("Content-Disposition: inline; filename=table_json.json");
 

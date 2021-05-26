@@ -16,7 +16,24 @@ final class  Paginator
         return self::$countPages;
     }
 
-    public static function pagination($conn, $database, $table, $page, $limit)
+    /**
+     * Функция пагинатора предназначена для получения данных в виде страниц с определенным количеством записей
+     * @staticvar int $columnName Количество страниц полученных в результате запроса к БД
+     * @param mysqli $conn Возвращает объект, представляющий подключение к серверу MySQL
+     * @param string $database Название базы данных для получения данных
+     * @param string $table Название таблицы для получения данных
+     * @param int $page Параметр задает номер страницы
+     * @param int $limit Параметр задает количество записей на странице
+     * @return json Возвращает Json
+     * структура ответа в формате JSON:
+     *{
+     *"status": "Число 1, если ОК, или 0, если ошибка",
+     *"error": "Описание ошибки, или пустая строка",
+     *"data": {
+     *"head" :[ ],
+     *"body" [ [ ], [ ] ] } }
+     */
+    public static function pagination(mysqli $conn, string $database, string $table, int $page, int $limit): json
     {
         $error  = "";
         $status = 1;

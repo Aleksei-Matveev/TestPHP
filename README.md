@@ -32,7 +32,7 @@
 
 ## Решение 
 
-Из [SQL](https://github.com/Aleksei-Matveev/TestPHP/tree/main/SQL) восстановить базу данных и перейти по URL %yourhost%/get_table_data/page={номер страницы}&limit={Лимит записей на странице}
+Из [SQL](https://github.com/Aleksei-Matveev/TestPHP/tree/main/SQL) восстановить базу данных и перейти по URL http://%yourhost%/get_table_data/page={номер страницы}&limit={Лимит записей на странице}
 
 
 ## Задание 3.

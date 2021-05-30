@@ -7,7 +7,7 @@
 
              self::$instance = new mysqli(DB_HOST, DB_USER, DB_PASSWORD, $database);
      }
-     public static function getInstance($database): mysqli
+     public static function getInstance($database = null): mysqli
      {
         if(!isset(self::$instance)) new DB($database);
         return self::$instance;

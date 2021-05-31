@@ -1,7 +1,5 @@
 <?php
-
     require_once('../config.php');
-
 
     $page = $_GET['page'] ?? 1; //если page не существует задаем значение 1
     $limit = $_GET['limit'] ?? 0 ; //если limit не существует, задаем значение 0.

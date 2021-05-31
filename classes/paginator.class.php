@@ -29,7 +29,7 @@ final class  Paginator{
      *"head" :[ ],
      *"body" [ [ ], [ ] ] } }
      */
-    public function pagination(mysqli $conn, string $database, string $table, int $page, int $limit): string
+    public function pagination(mysqli $conn, string $database, string $table, int $page = 1, int $limit = 0): string
     {
         $error  = "";
         $status = 1;

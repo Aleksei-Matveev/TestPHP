@@ -3,6 +3,7 @@
     $method = $_SERVER['REQUEST_METHOD'];
 
     if($method === 'GET') {
+
         getPcFilters($_GET);
     }
 
@@ -33,7 +34,7 @@
         $tmp .= " speed >= $speedfrom and speed <= $speedto";
     }
     $query .= $tmp;
-
+    echo $query;
     $conn = DB::getInstance('computers');
 
     $result = $conn->query($query);
@@ -41,7 +42,8 @@
     while ($row = $result->fetch_assoc())
         $rows[]=$row;
 
-    $json_result = json_encode($rows);
+
+    $json_result = json_encode($rows, JSON_UNESCAPED_UNICODE);
 
         header('Content-Type: application/json;charset=utf-8');
         header("Content-Disposition: inline; filename=table_json.json");

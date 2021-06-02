@@ -11,7 +11,7 @@
 - http://test.woerr.ru/app/php/table_json.php?page=1&limit=5 - Пример формирования данных в JSON.
 - page - номер страницы
 - limit - количество строк на странице
-- URL API http://localhost/get_table_data/page=1&limit=5
+- URL API http://localhost/api/get_table_data/page=1&limit=5
 
 ##### структура ответа в формате JSON:
 ```(json)

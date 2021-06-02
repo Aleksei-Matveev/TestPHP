@@ -15,7 +15,7 @@ final class  Paginator{
 
     /**
      * Функция пагинатора предназначена для получения данных в виде страницы с определенным количеством записей
-     * @param mysqli $conn Принимает экзкмпляр, представляющий подключение к серверу MySQL
+     * @param PDO $conn Принимает экзкмпляр, представляющий подключение к серверу MySQL
      * @param string $database Название базы данных для получения данных
      * @param string $table Название таблицы для получения данных
      * @param int $page Параметр задает номер страницы
@@ -29,7 +29,7 @@ final class  Paginator{
      *"head" :[ ],
      *"body" [ [ ], [ ] ] } }
      */
-    public function pagination(mysqli $conn, string $database, string $table, int $page = 1, int $limit = 0): string
+    public function pagination(PDO $conn, string $database, string $table, int $page = 1, int $limit = 0): string
     {
         $error  = "";
         $status = 1;
@@ -54,15 +54,17 @@ final class  Paginator{
 #endregion
 
         $query = sprintf("SELECT `COLUMN_NAME`FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='%s'", $table);
-        $result = $conn->query($query);
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
 
-        while ($row = $result->fetch_assoc())
+        while ($row = $stmt->fetch())
             $this->columnName[] = $row['COLUMN_NAME'];
 
         $query = sprintf("SELECT * FROM $database.$table LIMIT %d , $limit", ($page - 1) * $limit);
-        $result = $conn->query($query);
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
 
-        while ($row = $result->fetch_row())
+        while ($row = $stmt->fetch(PDO::FETCH_NUM))
             $this->body[] = $row;
 
         $this->countPages = count($this->body);

@@ -1,5 +1,4 @@
 <?php
-    require_once("../config/config.php");
     require_once('../config/database.php');
     require_once ('../entity/pc.php');
 
@@ -10,7 +9,7 @@
 
         $database = new Database();
 
-        $db = $database->getConnection();
+        $db = $database->getConnection('computers');
         $pc = new PC($db);
 
         $criteria = $_GET ?? array();

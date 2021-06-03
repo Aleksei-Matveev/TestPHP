@@ -31,17 +31,26 @@ if(isset($_FILES["filename"])) {
         $query = file_get_contents($name);
     } else echo "файл не загружен<br>";
 
-    $q = explode(';', $query);
 
-    foreach ($q as $pos=>$value) {
-        if(stripos($value, 'INSERT'))
-            $into[] = explode("VALUES", $value);
+
+    function parser($input){
+        foreach (explode(';', $input) as $line) {
+            if(stripos($line, 'INSERT')) {
+                $params = explode("VALUES", $line);
+
+                foreach ($params as $item)
+                    yield explode(',', $item);
+            }
+            else yield $line;
+            yield $line=>$params;
+        }
     }
 
-    foreach ($into as $pos=>$value)
-        if($pos) $a[]=$value;
-    echo "<PRE>";
-    print_r($into);
-    echo "</PRE>";
+    foreach (parser($query) as $item) {
+        echo "<PRE>";
+        print_r($item);
+        echo "</PRE>";
+    }
+
 }
 ?>

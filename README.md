@@ -11,7 +11,7 @@
 - http://test.woerr.ru/app/php/table_json.php?page=1&limit=5 - Пример формирования данных в JSON.
 - page - номер страницы
 - limit - количество строк на странице
-- URL API http://localhost/get_table_data/page=1&limit=5
+- URL API http://localhost/api/get_table_data/page=1&limit=5
 
 ##### структура ответа в формате JSON:
 ```(json)
@@ -32,7 +32,7 @@
 
 ## Решение 
 
-Из [SQL](https://github.com/Aleksei-Matveev/TestPHP/tree/main/SQL/task2) восстановить базу данных и перейти по URL http://%yourhost%/get_table_data/page={номер страницы}&limit={Лимит записей на странице}
+Из [SQL](https://github.com/Aleksei-Matveev/TestPHP/tree/main/SQL/task2) восстановить базу данных и перейти по URL http://%yourhost%/api/get_table_data/page={номер страницы}&limit={Лимит записей на странице}
 
 
 ## Задание 3.
@@ -48,7 +48,7 @@
 
 ## Решение 
 Из [SQL](https://github.com/Aleksei-Matveev/TestPHP/tree/main/SQL/task4) восстановить базу данных и перейти по URL http://%yourhost%/api/pc/filter.php/
-И передать в качестве параметров критерии для получения данных и БД. 
+и передать в качестве параметров критерии для получения данных и БД. 
 ### Критерии:
 - hdd[from]={число} , hdd[to]={число} - Объем жесткого диска.
 - speed[from], speed[to] - Частота процессора. PS. При написании readme, думаю нужно было назвать cpufreq. Ну да ладно

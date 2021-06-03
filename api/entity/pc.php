@@ -6,6 +6,11 @@ class PC{
     {
         $this->conn= $db;
     }
+
+    /** Метод предназначен для валидации входных параметров
+     * @param array $params Принимает массив с параметрами
+     * @return array Возвращает валидный массив для передаци в метод чтения
+     */
     private function validationParams(array $params):array
     {
         extract($params);
@@ -35,6 +40,11 @@ class PC{
         return $result;
     }
 
+    /**
+     * Метод предназначен для чтения данных из БД по критериям, переданныи в параметрах
+     * @param array $criteria Принимает массив критериев для выборки и БД
+     * @return mixed Возвращает результат запроса в БД
+     */
     public function read(array $criteria){
 
         if(!empty($criteria)) $conditions  = $this->rangeConditions($this->validationParams($criteria));
@@ -47,6 +57,11 @@ class PC{
         return $stmt;
     }
 
+    /**
+     * Метод предназначен для формирования условия WHERE, для оператора SELECT, в зависимости от колличесва переданных критериев
+     * @param array $criteria Принимает массив с критериями
+     * @return array Возвращает массив со строкой запроса и параметрамси для этого запроса
+     */
     private function rangeConditions(array $criteria): array
     {
         $parameters = [];
